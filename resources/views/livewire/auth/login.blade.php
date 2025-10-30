@@ -7,15 +7,21 @@
                 </div>
 
 
-                <form action="wire:login">
+                <form wire:submit="login">
                     <div class="form-group position-relative has-icon-left mb-4">
                         <input type="email" class="form-control form-control-xl" placeholder="Email" wire:model="email">
+                        @error('email')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                         <div class="form-control-icon">
                             <i class="bi bi-person"></i>
                         </div>
                     </div>
                     <div class="form-group position-relative has-icon-left mb-4">
                         <input type="password" class="form-control form-control-xl" placeholder="Password" wire:model="password">
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>
@@ -26,7 +32,9 @@
                             Keep me logged in
                         </label>
                     </div>
-                    <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
+                    <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in
+                        <x-spinner/>
+                    </button>
                 </form>
                 <div class="text-center mt-5 text-lg fs-4">
                     <p class="text-gray-600">Don't have an account?

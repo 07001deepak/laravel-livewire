@@ -3,6 +3,7 @@
 namespace App\Livewire\Auth;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -20,12 +21,17 @@ class Register extends Component
     public function submit()
     {
         $this->validate();
-        User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'password' => Hash::make($this->password)
-        ]);
-        return $this->redirect('/');
+        try {
+            User::create([
+                'name' => $this->name,
+                'email' => $this->email,
+                'password' => Hash::make($this->password)
+            ]);
+            success('Your Account has been successfully created');
+            return $this->redirectRoute('login', navigate:true);
+        } catch (\Exception $e) {
+            error('Something went wrong. Please try again');
+        }
     }
     public function render()
     {

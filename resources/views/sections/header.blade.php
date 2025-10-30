@@ -4,8 +4,8 @@
 
 <link rel="stylesheet" href="{{asset('vendors/iconly/bold.css')}}">
 
-<link rel="stylesheet" href="{{asset('perfect-scrollbar/perfect-scrollbar.css')}}">
-<link rel="stylesheet" href="{{asset('bootstrap-icons/bootstrap-icons.css')}}">
+<link rel="stylesheet" href="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
+<link rel="stylesheet" href="{{asset('vendors/bootstrap-icons/bootstrap-icons.css')}}">
 <link rel="stylesheet" href="{{asset('css/app.css')}}">
 <link rel="shortcut icon" href="{{asset('images/favicon.svg')}}" type="image/x-icon">
 <link rel="stylesheet" href="{{asset('css/pages/auth.css')}}">
