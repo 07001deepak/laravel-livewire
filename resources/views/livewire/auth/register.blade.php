@@ -1,4 +1,4 @@
-<x-layouts.app>
+
     <div id="auth">
         <div class="row h-100">
             <div class="col-lg-5 col-12">
@@ -63,5 +63,3 @@
         </div>
 
     </div>
-
-</x-layouts.app>

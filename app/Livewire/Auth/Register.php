@@ -15,16 +15,17 @@ class Register extends Component
     public $email;
     #[Validate('required|min:6|same:confirm_password')]
     public $password;
-
     public $confirm_password;
-    public function submit(){
+
+    public function submit()
+    {
         $this->validate();
         User::create([
             'name' => $this->name,
-            'email'=> $this->email,
+            'email' => $this->email,
             'password' => Hash::make($this->password)
         ]);
-       return $this->redirect(route('login'), navigate: true);
+        return $this->redirect('/');
     }
     public function render()
     {
