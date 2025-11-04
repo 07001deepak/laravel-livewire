@@ -34,9 +34,11 @@
             font-size: 24px;
         }
     </style>
+    @livewireStyles
 </head>
 
 <body>
+
     {{ $slot }}
 
 
@@ -54,7 +56,7 @@
     </script>
 
     <script src="{{asset('js/main.js')}}"></script>
-
+    @livewireScripts
 </body>
 
 </html>

@@ -25,7 +25,7 @@
                             Users List
                         </div>
                         <div class="col-md-6 text-end">
-                            <a href="#" class="btn btn-primary rounded-pill">Add User</a>
+                            <a href="{{route('create-user')}}" wire:navigate class="btn btn-primary rounded-pill">Add User</a>
                         </div>
                     </div>
                 </div>
