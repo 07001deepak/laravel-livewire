@@ -10,6 +10,7 @@ use Livewire\Component;
 
 class Login extends Component
 {
+    public $target = 'login';
 
     public function render()
     {

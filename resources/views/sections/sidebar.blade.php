@@ -22,14 +22,14 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
+                <li class="sidebar-item  has-sub" wire:current="active fw-bold">
+                    <a href="#" class='sidebar-link' >
                         <i class="bi bi-user-friends"></i>
                         <span>Users</span>
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="{{  route('users') }}" wire:navigate>All Users</a>
+                            <a href="{{  route('users') }}" wire:navigate wire:current="active fw-bold">All Users</a>
                         </li>
                         
                     </ul>

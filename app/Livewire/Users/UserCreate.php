@@ -9,9 +9,10 @@ use Livewire\Attributes\Validate;
 
 class UserCreate extends Component
 {
+    public $target = 'createUser';
     public function render()
     {
-        return view('livewire.users.user-create');
+        return view('livewire.users.user-create')->layout('components.layouts.main');
     }
 
     #[Validate('required|min:3|max:50')]
@@ -19,14 +20,14 @@ class UserCreate extends Component
     #[Validate('required|email|min:3|max:50|unique:users,email')]
     public $email;
 
-    public function store()
+    public function createUser()
     {
         $this->validate();
         try {
             User::create([
                 'name' => $this->name,
                 'email' => $this->email,
-                'password' => Hash::make('demo')
+                'password' => Hash::make(str_replace($this->name,'', ' ') . '@123')
             ]);
             success('New User has been created successfully!');
             return $this->redirectRoute('users', navigate: true);

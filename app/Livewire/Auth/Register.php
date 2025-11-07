@@ -10,6 +10,7 @@ use Livewire\Component;
 
 class Register extends Component
 {
+    public $target = 'submit';
     #[Validate('required|min:3|max:50')]
     public $name;
     #[Validate('required|email|min:3|max:50|unique:users,email')]

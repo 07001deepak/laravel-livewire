@@ -41,7 +41,7 @@
 
     {{ $slot }}
 
-
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js" type="text/javascript"></script>
     <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 
@@ -56,7 +56,61 @@
     </script>
 
     <script src="{{asset('js/main.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('livewire:navigated', () => {
+
+            // Re-init DataTables
+            let table1 = document.querySelector('#table1');
+            if (table1 && typeof simpleDatatables !== 'undefined') {
+                new simpleDatatables.DataTable(table1);
+            }
+
+            // Re-init ApexCharts if dashboard charts exist
+            if (typeof window.initCharts === 'function') {
+                window.initCharts();
+            }
+
+            // Re-init Perfect Scrollbar if used in sidebar
+            if (document.querySelector('.sidebar-wrapper') && typeof PerfectScrollbar !== 'undefined') {
+                new PerfectScrollbar('.sidebar-wrapper');
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => initSidebar());
+        document.addEventListener("livewire:navigated", () => {
+            // Wait a bit for Livewire DOM to fully mount
+            setTimeout(() => initSidebar(), 50);
+        });
+    </script>
+
     @livewireScripts
+
+    <script>
+        document.addEventListener('livewire:init', () => {
+            Livewire.on('confirmUserDelete', (event) => {
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.dispatch('deleteUserConfirmed',{id:event.id})
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            });
+
+        });
+    </script>
 </body>
 
 </html>

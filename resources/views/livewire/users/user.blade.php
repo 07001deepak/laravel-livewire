@@ -1,68 +1,72 @@
-<x-layouts.main>
-    <div class="page-heading">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Users</h3>
-                    <p class="text-subtitle text-muted">User List</p>
+<div class="page-heading" >
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Users</h3>
+                <p class="text-subtitle text-muted">User List</p>
 
-                </div>
-                <div class="col-12 col-md-6 order-md-2 order-first">
-                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Users</li>
-                        </ol>
-                    </nav>
-                </div>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Users</li>
+                    </ol>
+                </nav>
             </div>
         </div>
-        <section class="section">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-6">
-                            Users List
-                        </div>
-                        <div class="col-md-6 text-end">
-                            <a href="{{route('create-user')}}" wire:navigate class="btn btn-primary rounded-pill">Add User</a>
-                        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        Users List
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a href="{{route('create-user')}}" wire:navigate class="btn btn-primary rounded-pill">Add User</a>
                     </div>
                 </div>
-                <div class="card-body">
-                    <table class="table table-striped" id="table1">
-                        <thead>
-                            <tr>
-                                <th>S.No</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Created At</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($users as $user )
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $user?->name }}</td>
-                                <td>{{ $user?->email }}</td>
-                                <td>{{ $user?->created_at }}</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                            </tr>
-                            @empty
-                              <td class="colspan-4">No Record Found</td>
-                            @endforelse
-
-                        </tbody>
-                    </table>
-                </div>
             </div>
+            <div class="card-body">
+                <table class="table table-striped" id="table1">
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Created At</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody wire:poll.5s="refreshUsers">
+                        @forelse ($users as $user )
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $user?->name }}</td>
+                            <td>{{ $user?->email }}</td>
+                            <td>{{ $user?->created_at }}</td>
+                            <td>
+                                <span class="badge bg-success">Active</span>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" wire:click="productDelete({{ $user?->id }})">Delete 
+                                    <x-spinner  :target="$target" />
+                                </button>
+                            </td>
+                        </tr>
+                        @empty
+                        <td class="colspan-4">No Record Found</td>
+                        @endforelse
 
-        </section>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
 
 
-        <!-- Add User -->
-    </div>
-</x-layouts.main>
+    <!-- Add User -->
+</div>

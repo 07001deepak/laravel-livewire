@@ -10,7 +10,7 @@
 
                 <form wire:submit="submit">
                     <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="email" class="form-control form-control-xl" placeholder="Email" wire:model="email">
+                        <input type="email" class="form-control form-control-xl" placeholder="Email" wire:model.live="email">
                         @error('email')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="text" class="form-control form-control-xl" placeholder="Username" wire:model="name">
+                        <input type="text" class="form-control form-control-xl" placeholder="Username" wire:model.live="name">
                         @error('name')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -28,7 +28,7 @@
                         </div>
                     </div>
                     <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="password" class="form-control form-control-xl" placeholder="Password" wire:model="password">
+                        <input type="password" class="form-control form-control-xl" placeholder="Password" wire:model.live="password">
                         @error('password')
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -37,13 +37,13 @@
                         </div>
                     </div>
                     <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="password" class="form-control form-control-xl" placeholder="Confirm Password" wire:model="confirm_password">
+                        <input type="password" class="form-control form-control-xl" placeholder="Confirm Password" wire:model.live="confirm_password">
                         <div class="form-control-icon">
                             <i class="bi bi-shield-lock"></i>
                         </div>
                     </div>
                     <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Sign Up
-                        <x-spinner/>
+                        <x-spinner :target='$target'/>
                     </button>
 
                 </form>

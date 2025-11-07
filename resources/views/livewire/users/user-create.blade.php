@@ -1,66 +1,64 @@
-<x-layouts.main>
-    <div class="page-heading">
-        <div class="page-title">
-            <div class="row">
-                <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Users</h3>
-                    <p class="text-subtitle text-muted">Create User</p>
+<div class="page-heading">
+    <div class="page-title">
+        <div class="row">
+            <div class="col-12 col-md-6 order-md-1 order-last">
+                <h3>Users</h3>
+                <p class="text-subtitle text-muted">Create User</p>
 
-                </div>
-                <div class="col-12 col-md-6 order-md-2 order-first">
-                    <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Users/Create</li>
-                        </ol>
-                    </nav>
-                </div>
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Users / Create</li>
+                    </ol>
+                </nav>
             </div>
         </div>
-        <section class="section">
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-6">
-                           <a href="{{ route('users') }}" wire:navigate class="btn btn-primary rounded-pill">Back</a>
-                        </div>
+    </div>
+    <section class="section">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{{ route('users') }}" wire:navigate class="btn btn-primary rounded-pill">Back</a>
                     </div>
                 </div>
-                <div class="card-body">
-                    <form wire:submit="store">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" id="name" class="form-control round"
-                                        placeholder="Name" wire:model="name" name="name">
-                                    @error('name')
-                                    <span class="text-danger">{{ $message }} </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="text" id="email" class="form-control round"
-                                        placeholder="Email Address" wire:model="email" name="email">
-                                    @error('email')
-                                    <span class="text-danger">{{ $message }} </span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col-md-6">
-                                <button class="btn btn-success rounded-pill">Create User 
-                                <x-spinner/>        
-                            </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
+            <div class="card-body">
+                <form wire:submit="createUser">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" class="form-control round"
+                                    placeholder="Name" wire:model="name" name="name">
+                                @error('name')
+                                <span class="text-danger">{{ $message }} </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" id="email" class="form-control round"
+                                    placeholder="Email Address" wire:model="email" name="email">
+                                @error('email')
+                                <span class="text-danger">{{ $message }} </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <button class="btn btn-success rounded-pill">Create User
+                                <x-spinner :target="$target"/>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
-        </section>
-    </div>
-</x-layouts.main>
+    </section>
+</div>
