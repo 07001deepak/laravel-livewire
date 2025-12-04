@@ -1,16 +1,16 @@
-<div class="page-heading" >
+<div class="page-heading">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Users</h3>
-                <p class="text-subtitle text-muted">User List</p>
+                <h3>Roles</h3>
+                <p class="text-subtitle text-muted">Roles List</p>
 
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Users</li>
+                        <li class="breadcrumb-item active" aria-current="page">Roles</li>
                     </ol>
                 </nav>
             </div>
@@ -21,38 +21,45 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-6">
-                        Users List
+                        Roles List
                     </div>
                     <div class="col-md-6 text-end">
-                        <a href="{{route('create-user')}}" wire:navigate class="btn btn-primary rounded-pill">Add User</a>
+                        <a href="{{route('role.create')}}" wire:navigate class="btn btn-primary rounded-pill">Add Roles</a>
                     </div>
                 </div>
             </div>
             <div class="card-body">
-                {{--<table class="table table-striped" id="table1">
+                <table class="table table-striped" id="table1">
                     <thead>
                         <tr>
                             <th>S.No</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Created At</th>
-                            <th>Status</th>
+                            <th>Name</th>            
+                            <th>Roles</th>                  
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody wire:poll.5s="refreshUsers">
-                        @forelse ($users as $user )
+                    <tbody>
+                        @forelse ($allRoles as $role )
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $user?->name }}</td>
-                            <td>{{ $user?->email }}</td>
-                            <td>{{ $user?->created_at }}</td>
+                            <td>{{ $role->name }}</td>
                             <td>
-                                <span class="badge bg-success">Active</span>
+                                @if($role->permissions)
+                                 @foreach ($role->permissions as $permission)
+                                     <span class="badge bg-secondary">
+                                        {{ $permission->name }}
+                                     </span>
+                                 @endforeach
+                                 
+                                @endif
                             </td>
+                     
                             <td>
-                                <button class="btn btn-danger btn-sm" wire:click="productDelete({{ $user?->id }})">Delete 
-                                    <x-spinner  :target="$target" />
+                                <a href="{{ route('role.edit',['id' => $role->id]) }}" class="btn btn-primary btn-sm" wire:navigate>
+                                    Edit 
+                                </a>
+                                <button class="btn btn-danger btn-sm" wire:click="getConfirmDeleteRole({{ $role->id }})">
+                                    Delete 
                                 </button>
                             </td>
                         </tr>
@@ -61,9 +68,7 @@
                         @endforelse
 
                     </tbody>
-                </table>--}}
-
-                <livewire:Datatables.UserTable theme="bootstrap-5" />
+                </table>
             </div>
         </div>
 

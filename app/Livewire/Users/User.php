@@ -21,7 +21,7 @@ class User extends Component
         ])->layout('components.layouts.main');
     }
 
-    public function productDelete($id){
+    public function confirmUserDelete($id){
         $this->dispatch('confirmUserDelete', id:$id);
     }
 

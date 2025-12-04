@@ -31,6 +31,9 @@
                         <li class="submenu-item ">
                             <a href="{{  route('users') }}" wire:navigate wire:current="active fw-bold">All Users</a>
                         </li>
+                        <li class="submenu-item ">
+                            <a href="{{  route('roles') }}" wire:navigate wire:current="active fw-bold">Roles</a>
+                        </li>
                         
                     </ul>
                 </li>

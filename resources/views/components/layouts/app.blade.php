@@ -88,6 +88,7 @@
 
     <script>
         document.addEventListener('livewire:init', () => {
+            // User Delete
             Livewire.on('confirmUserDelete', (event) => {
                 Swal.fire({
                     title: "Are you sure?",
@@ -102,12 +103,34 @@
                         Livewire.dispatch('deleteUserConfirmed',{id:event.id})
                         Swal.fire({
                             title: "Deleted!",
-                            text: "Your file has been deleted.",
+                            text: "User has been deleted successfully.",
                             icon: "success"
                         });
                     }
                 });
             });
+
+            // Role Delete
+            Livewire.on('confirmDeleteRole', (event)=>{
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Livewire.dispatch('deleteRoleConfirmed',{id:event.id})
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Role has been deleted successfully.",
+                            icon: "success"
+                        });
+                    }
+                });
+            })
 
         });
     </script>
